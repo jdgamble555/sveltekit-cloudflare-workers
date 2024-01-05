@@ -1,12 +1,13 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
-// @ts-expect-error - Cloudflare Worker Cache
-const cache = caches.default;
 
 export const actions = {
 
     default: async () => {
+
+        // @ts-expect-error - Cloudflare Worker Cache
+        const cache = caches.default;
 
         const url = 'https://sveltekit-cloudflare-workers.pages.dev/';
         const request = new Request(url);
