@@ -6,7 +6,7 @@ export const load = (async ({ setHeaders }) => {
     const n = Math.random();
 
     setHeaders({
-        'Cache-Control': 'max-age=31536000, immutable'
+        'Cloudflare-CDN-Cache-Control': 'max-age=31536000, immutable'
     });
 
     return {
