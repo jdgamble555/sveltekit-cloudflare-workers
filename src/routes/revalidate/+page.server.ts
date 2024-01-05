@@ -18,7 +18,7 @@ export const actions = {
             return fail(400, { error: 'Revalidate Error: Not in Cache!' });
         }
 
-        const putRequest = new Request(url, {
+        /*const putRequest = new Request(url, {
             headers: {
                 'Cache-Control': 'max-age=31536000, s-maxage=31536000',
                 'Cloudflare-CDN-Cache-Control': 'max-age=31536000',
@@ -26,7 +26,7 @@ export const actions = {
             }
         });
 
-        await cache.put(putRequest);
+        await cache.put(putRequest);*/
 
         return { success: true };
     }
