@@ -14,7 +14,7 @@ export const actions = {
         const response = await cache.delete(request);
 
         if (!response.ok) {
-            return fail(400, { error: 'Revalidate Error ' });
+            return fail(400, { error: 'Revalidate Error: ' + response });
         }
 
         return { success: true };
