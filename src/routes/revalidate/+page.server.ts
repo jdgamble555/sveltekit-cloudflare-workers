@@ -10,13 +10,22 @@ export const actions = {
         const cache = caches.default;
 
         const url = 'https://sveltekit-cloudflare-workers.pages.dev/';
-        const request = new Request(url);
+        const deleteRequest = new Request(url);
 
-        const response = await cache.delete(request);
+        const isDeleted = await cache.delete(deleteRequest);
 
-        if (!response) {
-            return fail(400, { error: 'Revalidate Error: ' + response });
+        if (!isDeleted) {
+            return fail(400, { error: 'Revalidate Error: Not in Cache!' });
         }
+
+        const putRequest = new Request(url, {
+            headers: {
+                'Cloudflare-CDN-Cache-Control': 'max-age=31536000',
+                'CDN-Cache-Control': 'max-age=31536000'
+            }
+        });
+
+        await cache.put(putRequest);
 
         return { success: true };
     }
